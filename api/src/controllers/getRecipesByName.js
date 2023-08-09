@@ -15,9 +15,6 @@ const getRecipesByName = async (req, res) => {
 
     const { data } = await axios.get(`${URL}complexSearch/?query=${name}&apiKey=${API_KEY}`);
     const recipes = data.results
-
-    console.log(recipeDB);
-    console.log(recipes)
     
     const combinedResults = recipeDB ? [...recipes, recipeDB] : recipes;
 
