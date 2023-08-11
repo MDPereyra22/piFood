@@ -1,0 +1,10 @@
+.divContenedor{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction:initial ;
+    align-items: center;
+    justify-content: center;
+   
+  
+  
+  }
