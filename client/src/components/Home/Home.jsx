@@ -1,10 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes, filteredCharacterByDiets, sortRecipes, sortHealthScore } from "../../actions";
+import { getRecipes, filteredRecipesByDiets, sortRecipes, sortHealthScore, filterCreated } from "../../actions";
 import { Link } from 'react-router-dom';
 import Card from "../Card/Card";
 import styles from "./Home.module.css"
+import SearchBar from "../SearchBar/SearchBar";
 
 const Home = () => {
 
@@ -43,7 +44,7 @@ const Home = () => {
     }
 
     const handleFilterByDiets = (event) =>{
-        dispatch(filteredCharacterByDiets(event.target.value))
+        dispatch(filteredRecipesByDiets(event.target.value))
     }
 
     const handleSortAlphabetically = (event) => {
@@ -54,9 +55,16 @@ const Home = () => {
         dispatch(sortHealthScore(event.target.value));
     };
     
+    const handleFilterCreated = (event) =>{
+        dispatch(filterCreated(event.target.value))
+    }
+
+    
     
     return (
         <div >
+            <SearchBar/>
+
             <Link to="/recipe"> Crear receta </Link>
             <h1>Bienvenidos a FOOD</h1>
             <button onClick={e => { handleClick(e) }}>
@@ -65,7 +73,7 @@ const Home = () => {
 
             <div>
                 <select onChange={e => handleSortAlphabetically(e)}>
-                    <option value='ascendente'>Ascendente</option>
+                    <option value='ascendente'>Ascendente</option> 
                     <option value='descendente'>Descendente</option>
                 </select>
                 <select onChange={(e) => handleSortByHealthScore(e)}>
@@ -85,9 +93,9 @@ const Home = () => {
                     <option value="ketogenic">Ketogenic</option>
                     <option value="fodmap friendly">Foodmap friendly</option>
                 </select>
-                <select>
-                    <option value='all'>Todos</option>
-                    <option value='created'>Creados</option>
+                <select onChange={e => handleFilterCreated(e)}>
+                    <option value='all'>All</option>
+                    <option value='created'>Created</option>
                     <option value='api'>Existentes</option>
                 </select>
                 <div className={styles.divContenedor}>
@@ -117,6 +125,8 @@ const Home = () => {
                     <button onClick={goToNextPage} disabled={currentPage === totalPages}>
                         Next
                     </button>
+
+
                 </div>
             </div>
         </div>

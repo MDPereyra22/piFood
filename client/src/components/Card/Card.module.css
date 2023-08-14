@@ -1,33 +1,53 @@
+:root {
+  --color-fondo: #f3f6fa; /* Gris claro para el fondo */
+  --color-titulo: #35495e; /* Azul oscuro para los títulos */
+  --color-texto: #737b8b; /* Gris medio para el texto */
+  --color-borde: #d1d9e6; /* Gris claro para los bordes */
+  --color-hover: #99a7bf; /* Azul grisáceo para el hover */
+}
+
 .divCarta {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 300px; /* Establece un ancho máximo para evitar que sean demasiado anchas en pantallas grandes */
-  height: 400px; /* Establece una altura fija para las cards */
+  max-width: 300px;
+  height: 400px;
   padding: 20px;
-  margin: 20px auto; /* Centrar horizontalmente */
-  background-color: #77a4bca2;
-  border: 1px solid black;
+  margin: 20px auto;
+  background-color: var(--color-fondo);
+  border: 1px solid var(--color-borde);
   border-radius: 16px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Agregar una sombra para resaltar */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.divCarta:hover {
+  background-color: var(--color-hover);
+  transform: translateY(-5px);
 }
 
 .carta {
-  font-size: 1.2em; /* Aumentar el tamaño de fuente para mayor legibilidad */
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2em;
   text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  color: rgb(0, 0, 0);
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color: var(--color-titulo);
 }
 
 .imagen {
   width: 100%;
   border-radius: 10px;
-  border: 1px solid #ccc;
-  transition: transform 0.3s ease; /* Agrega una transición suave al tamaño */
+  border: 1px solid var(--color-borde);
+  transition: transform 0.3s ease;
 }
 
 .divCarta:hover .imagen {
-  transform: scale(1.05); /* Aumenta el tamaño de la imagen */
+  transform: scale(1.1);
+}
+
+.icono {
+  font-size: 1.5em;
+  color: var(--color-titulo);
 }

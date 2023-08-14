@@ -1,8 +1,10 @@
-import { GET_RECIPES, RECIPES_BY_DIET, SORT_RECIPES, SORT_BY_HEALTH_SCORE } from "../actions";
+import { GET_RECIPES, RECIPES_BY_DIET, SORT_RECIPES, SORT_BY_HEALTH_SCORE, FILTER_CREATED, GET_NAME_RECIPES, POST_RECIPES, GET_DIETS, GET_DETAIL } from "../actions";
 
 const initialState = {
     recipes: [],
     allRecipes: [],
+    diets: [],
+    detail:[],
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -15,7 +17,7 @@ const rootReducer = (state = initialState, action) => {
             }
         case RECIPES_BY_DIET:
             const allRecipes = state.allRecipes
-            const recipesFiltered = action.payload === "all" ? allRecipes : allRecipes.filter(el => el.diets.includes(action.payload))
+            const recipesFiltered = action.payload === "all" ? allRecipes : allRecipes.filter(el => el.diets && el.diets.includes(action.payload))
             return {
                 ...state,
                 recipes: recipesFiltered
@@ -49,8 +51,36 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 recipes: sortedRecipesByHealthScore,
             };
+        case FILTER_CREATED:
+            const allRecipes1 = state.allRecipes
+            const createdFilter = action.payload === "created" ? allRecipes1.filter(el => el.createdInDb) : allRecipes1.filter(el => !el.createdInDb);
+            return {
+                ...state,
+                recipes: action.payload === "all" ? state.allRecipes : createdFilter
+            }
 
-            
+        case GET_NAME_RECIPES:
+            return {
+                ...state,
+                recipes: action.payload
+            }
+
+        case GET_DIETS:
+            return {
+                ...state,
+                diets: action.payload
+            }
+
+        case POST_RECIPES:
+            return {
+                ...state,
+            }
+        
+        case GET_DETAIL:
+            return{
+                ...state,
+                detail: action.payload,
+            }    
         default:
             return { ...state }
 
