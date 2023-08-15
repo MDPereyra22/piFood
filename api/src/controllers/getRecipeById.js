@@ -27,7 +27,7 @@ const getRecipeById = async (req, res) => {
           id: data.id,
           title: data.title,
           image: data.image,
-          summary: data.summary,
+          summary: data.summary.replace(/<[^>]+>/g, ""),
           healthScore: data.healthScore,
           steps: data.analyzedInstructions[0]?.steps.map((step) => {
             return {

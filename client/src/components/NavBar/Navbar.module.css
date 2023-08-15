@@ -1,0 +1,24 @@
+/* NavBar.module.css */
+/* NavBar.module.css */
+
+.navBarContainer {
+  display: flex;
+  flex-direction: column; /* Cambiamos la dirección a columna */
+  align-items: center;
+  justify-content: center; /* Alineación vertical y centrado */
+  background-color: #35495e;
+  padding: 10px 20px;
+}
+
+.searchLine {
+  display: flex; /* Display flex para los elementos de la primera línea */
+  align-items: center; /* Alinear en el centro horizontal */
+  justify-content: center; /* Alinear en el centro vertical */
+  margin-bottom: 10px; /* Margen inferior para separar las líneas */
+}
+
+.selectLine {
+  display: flex; /* Display flex para los elementos de la segunda línea */
+  align-items: center; /* Alinear en el centro horizontal */
+  justify-content: center; /* Alinear en el centro vertical */
+}

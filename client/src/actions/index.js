@@ -95,10 +95,11 @@ export const postRecipe = (payload) => {
 };
 
 export const getDetail =(id)=>{
-    const endpoint = "http://localhost:3001/recipes/"
+    const endpoint = `http://localhost:3001/recipes/${id}`
     return async(dispatch)=>{
         try {
-            const {data} = await axios.get(`${endpoint}/${id}`);
+            const {data} = await axios.get(endpoint);
+            console.log(data)
             return dispatch({
                 type: GET_DETAIL,
                 payload: data

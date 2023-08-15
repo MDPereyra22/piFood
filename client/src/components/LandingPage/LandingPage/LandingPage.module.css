@@ -1,14 +1,80 @@
-body {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-image:url("https://static.vecteezy.com/system/resources/previews/008/242/656/original/close-up-off-garlic-vegetable-on-wooden-table-for-food-backgrounds-above-free-photo.jpg") ;
-    background-size: 100%;
-    background-attachment: fixed;
-    overflow: scroll;
-  }
+/* LandingPage.module.css */
+
+.body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+.header {
+  text-align: center;
+  padding: 60px 0;
+}
+
+.header h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  color: #35495e;
+}
+
+.header p {
+  font-size: 18px;
+  color: #737b8b;
+}
+
+.mainContent {
+  position: relative;
+  width: 100%;
+}
+
+.backgroundImage {
+  width: 100%;
+  max-height: 600px;
+  object-fit: cover;
+}
+
+.introText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.introText p {
+  font-size: 20px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.enterButton {
+  background-color: #35495e;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.enterButton:hover {
+  background-color: #283745;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px 0;
+  background-color: #35495e;
+  color: white;
+}
+
+.footer p {
+  font-size: 14px;
+}
+

@@ -22,6 +22,8 @@ const getDiets = async (req, res) => {
 
         const dietArray = recipes.map((data) => data.diets)
 
+        console.log(dietArray)
+
         const concatenatedArray = dietArray.reduce((result, currentArray) => {
             return result.concat(currentArray);
         }, []);

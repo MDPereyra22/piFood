@@ -1,0 +1,27 @@
+/* Paginado.module.css */
+
+.paginadoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .paginaButton {
+    border: none;
+    background-color: transparent;
+    color: #333;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .paginaButton:hover {
+    color: #007bff;
+  }
+  
+  .active {
+    color: #0b054b; 
+    font-weight: bold;
+  }
+  

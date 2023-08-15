@@ -27,28 +27,31 @@ const getAllRecipes = async (req, res) => {
         diets: el.diets
       }
     });
-    
+
     const dbRecipes = await Recipe.findAll({
-      include:{
+      include: {
         model: Diets,
-        attributes:["name"],
-        through:{
+        attributes: ["name"],
+        through: {
           attributes: [],
         },
       }
-    }); 
+    });
 
-    const allRecipes = [...apiRecipes, ...dbRecipes]; 
+    const allRecipes = [...apiRecipes, ...dbRecipes];
 
-    if(name){
+    const dietsArray = dbRecipes.map(data => data.diets.map(diet => diet.dataValues));
+    console.log(dietsArray);
+
+    if (name) {
       let recipesName = allRecipes.filter(el => el.title.toLowerCase().includes(name.toLowerCase()));
       recipesName.length ?
-      res.status(200).send(recipesName):
-      res.status(400).send("No se encontró el personaje")
-    } else{
+        res.status(200).send(recipesName) :
+        res.status(400).send("No se encontró el personaje")
+    } else {
       res.status(200).json(allRecipes);
     }
-    
+
 
 
   } catch (error) {
