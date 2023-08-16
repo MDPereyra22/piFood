@@ -2,7 +2,8 @@ const axios = require('axios');
 const { Recipe, Diets } = require('../db');
 require('dotenv').config();
 const {
-  API_KEY
+  API_KEY,
+  API_HABILITADA
 } = process.env;
 
 const URL = "https://api.spoonacular.com/recipes/complexSearch?apiKey="
@@ -14,7 +15,7 @@ const getApiRecipes = async () => {
       id: el.id,
       title: el.title,
       image: el.image,
-      summary: el.summary,
+      summary: el.summary.replace(/<[^>]+>/g, ''),
       healthScore: el.healthScore,
       steps: el.analyzedInstructions[0]?.steps.map((step) => {
         return {
@@ -29,7 +30,7 @@ const getApiRecipes = async () => {
 }
 
 
-const getDbRecipes = async () =>{
+const getDbRecipes = async () => {
   const dbRecipes = await Recipe.findAll({
     include: {
       model: Diets,
@@ -50,15 +51,18 @@ const getDbRecipes = async () =>{
   return dbRecipesNormalized;
 }
 
-const getApiAndDbRecipes = async () =>{
-      const apiRecipes = await getApiRecipes()
-      // const apiRecipes = []
-      const dbRecipes = await getDbRecipes();
-  
-  
-      const allRecipes = [...apiRecipes, ...dbRecipes];
+const getApiAndDbRecipes = async () => {
+  let apiRecipes = []
 
-      return allRecipes;
+  if (API_HABILITADA == "true")
+    apiRecipes = await getApiRecipes()
+
+  const dbRecipes = await getDbRecipes();
+
+
+  const allRecipes = [...apiRecipes, ...dbRecipes];
+
+  return allRecipes;
 }
 
 
@@ -86,4 +90,4 @@ const getAllRecipes = async (req, res) => {
   }
 }
 
-module.exports = {getAllRecipes, getApiAndDbRecipes};
+module.exports = { getAllRecipes, getApiAndDbRecipes };
