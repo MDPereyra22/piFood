@@ -3,6 +3,7 @@ import { GET_RECIPES, RECIPES_BY_DIET, SORT_RECIPES, SORT_BY_HEALTH_SCORE, FILTE
 const initialState = {
     recipes: [],
     allRecipes: [],
+    copyAllRecipes:[],
     diets: [],
     detail:[],
 }
@@ -15,13 +16,21 @@ const rootReducer = (state = initialState, action) => {
                 recipes: action.payload,
                 allRecipes: action.payload
             }
-        case RECIPES_BY_DIET:
-            const allRecipes = state.allRecipes
-            const recipesFiltered = action.payload === "all" ? allRecipes : allRecipes.filter(el => el.diets && el.diets.includes(action.payload))
-            return {
-                ...state,
-                recipes: recipesFiltered
-            }
+            case RECIPES_BY_DIET:
+                let copiFilter;
+                
+                if (state.copyAllRecipes.length > 0) {
+                    copiFilter = state.copyAllRecipes;
+                } else {
+                    copiFilter = state.allRecipes;
+                }
+                
+                const recipesFiltered = action.payload === "all" ? copiFilter : copiFilter.filter(el => el.diets && el.diets.includes(action.payload));
+                
+                return {
+                    ...state,
+                    recipes: recipesFiltered
+                }
         case SORT_RECIPES:
             const sortedRecipes = [...state.recipes].sort((a, b) => {
                 const titleA = a.title.toLowerCase();
@@ -56,7 +65,8 @@ const rootReducer = (state = initialState, action) => {
             const createdFilter = action.payload === "created" ? allRecipes1.filter(el => el.createdInDb) : allRecipes1.filter(el => !el.createdInDb);
             return {
                 ...state,
-                recipes: action.payload === "all" ? state.allRecipes : createdFilter
+                recipes: action.payload === "all" ? state.allRecipes : createdFilter,
+                copyAllRecipes: action.payload === "all" ? state.allRecipes : createdFilter,
             }
 
         case GET_NAME_RECIPES:
