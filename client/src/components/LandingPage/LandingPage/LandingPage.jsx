@@ -17,8 +17,7 @@ const LandingPage = () => {
         />
         <div className={styles.introText}>
           <p>
-            Explora una amplia variedad de recetas, crea tus propias listas de
-            favoritos y más.
+            Explora una amplia variedad de recetas. Crea tus propias recetas y más.
           </p>
           <Link to="/home">
             <button className={styles.enterButton}>¡Comenzar Ahora!</button>
