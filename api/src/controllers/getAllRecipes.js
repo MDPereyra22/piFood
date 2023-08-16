@@ -50,16 +50,23 @@ const getDbRecipes = async () =>{
   return dbRecipesNormalized;
 }
 
+const getApiAndDbRecipes = async () =>{
+      const apiRecipes = await getApiRecipes()
+      // const apiRecipes = []
+      const dbRecipes = await getDbRecipes();
+  
+  
+      const allRecipes = [...apiRecipes, ...dbRecipes];
+
+      return allRecipes;
+}
+
+
 const getAllRecipes = async (req, res) => {
   const name = req.query.name
   try {
 
-    // const apiRecipes = await getApiRecipes()
-    const apiRecipes = []
-    const dbRecipes = await getDbRecipes();
-
-
-    const allRecipes = [...apiRecipes, ...dbRecipes];
+    const allRecipes = await getApiAndDbRecipes();
 
 
     if (name) {
@@ -79,4 +86,4 @@ const getAllRecipes = async (req, res) => {
   }
 }
 
-module.exports = getAllRecipes;
+module.exports = {getAllRecipes, getApiAndDbRecipes};

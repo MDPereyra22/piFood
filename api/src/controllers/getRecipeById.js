@@ -1,5 +1,6 @@
 const axios = require("axios");
-const { Recipe } = require('../db')
+const { Recipe } = require('../db');
+const {getApiAndDbRecipes} = require("./getAllRecipes")
 require('dotenv').config();
 const {
   API_KEY
@@ -13,36 +14,12 @@ const getRecipeById = async (req, res) => {
 
 
   try {
-    const responseDB = await Recipe.findAll();
-    const recipesDB = responseDB.filter((recipe) => recipe.id === id);
+    const apiAndDbRecipes = await getApiAndDbRecipes();
+    const foundRecipe = apiAndDbRecipes.find((recipe) => recipe.id.toString() === id);
 
-    const combinedResults = [...recipesDB];
-
-    if (combinedResults.length > 0) {
-      return res.status(200).json(combinedResults);
-    } else {
-      const { data } = await axios.get(`${URL}${id}/information?apiKey=${API_KEY}`)
-      if (data) {
-        const recipe = {
-          id: data.id,
-          title: data.title,
-          image: data.image,
-          summary: data.summary.replace(/<[^>]+>/g, ""),
-          healthScore: data.healthScore,
-          steps: data.analyzedInstructions[0]?.steps.map((step) => {
-            return {
-              number: step.number,
-              step: step.step,
-            };
-          }),
-          diets: data.diets
-        };
-        return res.status(200).json(recipe);
-      } else {
-        return res.status(400).send("Not Found");
-      };
-    }
-
+    foundRecipe ?
+    res.status(200).json(foundRecipe) :
+    res.status(204).send("Recipe not found")
 
   } catch (error) {
     console.error(error);
