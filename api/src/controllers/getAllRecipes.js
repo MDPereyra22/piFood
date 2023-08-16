@@ -7,41 +7,60 @@ const {
 
 const URL = "https://api.spoonacular.com/recipes/complexSearch?apiKey="
 
+const getApiRecipes = async () => {
+  const { data } = await axios.get(`${URL}${API_KEY}&number=100&addRecipeInformation=true`);
+  const apiRecipes = await data.results.map((el) => {
+    return {
+      id: el.id,
+      title: el.title,
+      image: el.image,
+      summary: el.summary,
+      healthScore: el.healthScore,
+      steps: el.analyzedInstructions[0]?.steps.map((step) => {
+        return {
+          number: step.number,
+          step: step.step,
+        };
+      }),
+      diets: el.diets
+    }
+  });
+  return apiRecipes;
+}
+
+
+const getDbRecipes = async () =>{
+  const dbRecipes = await Recipe.findAll({
+    include: {
+      model: Diets,
+      attributes: ["name"],
+    }
+  })
+
+  const a = dbRecipes.map(el => el.get({ plain: true }))
+
+  let dbRecipesNormalized = [];
+  a.forEach(recipe => {
+    let normalizedRecipe = recipe
+    const normalizedDiets = recipe.diets.map(d => d.name)
+    normalizedRecipe.diets = normalizedDiets
+    dbRecipesNormalized.push(normalizedRecipe)
+  });
+
+  return dbRecipesNormalized;
+}
+
 const getAllRecipes = async (req, res) => {
   const name = req.query.name
   try {
-    const { data } = await axios.get(`${URL}${API_KEY}&number=100&addRecipeInformation=true`);
-    const apiRecipes = await data.results.map((el) => {
-      return {
-        id: el.id,
-        title: el.title,
-        image: el.image,
-        summary: el.summary,
-        healthScore: el.healthScore,
-        steps: el.analyzedInstructions[0]?.steps.map((step) => {
-          return {
-            number: step.number,
-            step: step.step,
-          };
-        }),
-        diets: el.diets
-      }
-    });
 
-    const dbRecipes = await Recipe.findAll({
-      include: {
-        model: Diets,
-        attributes: ["name"],
-        through: {
-          attributes: [],
-        },
-      }
-    });
+    // const apiRecipes = await getApiRecipes()
+    const apiRecipes = []
+    const dbRecipes = await getDbRecipes();
+
 
     const allRecipes = [...apiRecipes, ...dbRecipes];
 
-    const dietsArray = dbRecipes.map(data => data.diets.map(diet => diet.dataValues));
-    console.log(dietsArray);
 
     if (name) {
       let recipesName = allRecipes.filter(el => el.title.toLowerCase().includes(name.toLowerCase()));
