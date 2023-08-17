@@ -4,6 +4,7 @@ import { postRecipe, getDiets } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import validation from "./validation";
 import styles from "./Create.module.css";
+import StepsInputs from "../StepsInputs/StepsInputs";
 
 
 
@@ -20,7 +21,7 @@ const Create = () => {
         title: "",
         summary: "",
         healthScore: "",
-        steps: "",
+        steps: [],
         image: "",
         diets: [],
     });
@@ -36,13 +37,13 @@ const Create = () => {
         });
         setErrors(validation({
             ...form,
-            [event.target.name] : event.target.value
+            [event.target.name]: event.target.value
         }))
     };
 
     const handleSelectDiet = (event) => {
         const selectedDiet = event.target.value;
-        if (selectedDiet !== "") { 
+        if (selectedDiet !== "") {
             if (!form.diets.includes(selectedDiet)) {
                 setForm({
                     ...form,
@@ -55,17 +56,22 @@ const Create = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(form);
-        dispatch(postRecipe(form));
-        alert('Recipe created');
-        setForm({
-            name: "",
-            summary: "",
-            healthScore: "",
-            steps: "",
-            image: "",
-            diets: [],
-        });
-        history.push('/home');
+        if (errors) {
+            alert("Faltan indicaciones")
+        } else {
+            dispatch(postRecipe(form));
+            alert('Recipe created');
+            setForm({
+                name: "",
+                summary: "",
+                healthScore: "",
+                steps: [],
+                image: "",
+                diets: [],
+            });
+            history.push('/home');
+        }
+
     };
 
     return (
@@ -113,12 +119,11 @@ const Create = () => {
                     )}
                 </div>
                 <div>
-                    <label>Steps:</label>
-                    <textarea
+                   
+                    <StepsInputs 
                         value={form.steps}
                         name="steps"
-                        onChange={(e) => handleChange(e)}
-                    />
+                        onChange={(e) => handleChange(e)} />
                 </div>
                 <div>
                     <label>Image URL:</label>
