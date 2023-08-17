@@ -56,8 +56,9 @@ const Create = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(form);
-        if (errors) {
-            alert("Faltan indicaciones")
+        if (Object.keys(errors).length !== 0) {
+                alert("Faltan datos")
+                console.log(errors);
         } else {
             dispatch(postRecipe(form));
             alert('Recipe created');
