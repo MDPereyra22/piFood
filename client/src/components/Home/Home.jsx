@@ -30,11 +30,15 @@ const Home = () => {
   return (
     <div>
       <NavBar />
-      <Link to="/recipe"> Crear receta </Link>
-      <h1>Bienvenidos a FOOD</h1>
-      <button onClick={() => dispatch(getRecipes())}>
-        Recargar recetas
-      </button>
+
+      <div className={styles.divRutas}>
+        <Link  className={styles.enterButton} to="/recipe"> Create recipe </Link>
+        <h1 className={styles.text}>Welcome to the best food website</h1>
+        <button className={styles.enterButton} onClick={() => dispatch(getRecipes())}>
+          Reload recipes
+        </button></div>
+
+
 
       <div className={styles.divContenedor}>
         {recipesToShow.map((element) => {
@@ -46,11 +50,15 @@ const Home = () => {
           );
         })}
       </div>
+
+      <div>
       <Paginado
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={handlePageChange}
       />
+      </div>
+      
     </div>
   );
 };

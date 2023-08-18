@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../../actions";
-import styles from "./Detail.module.css"; // Importa los estilos
+import styles from "./Detail.module.css";
 
 const Detail = (props) => {
   const dispatch = useDispatch();
@@ -18,12 +18,13 @@ const Detail = (props) => {
       {myRecipe ? (
         <div className={styles.card}>
           <Link to="/home">
-            <button>Back to Home</button>
+            <button className={styles.backButton}>Back to Home</button>
           </Link>
           <div className={styles.circleImage}>
             <img src={myRecipe.image} alt={myRecipe.title} />
           </div>
           <h1>{myRecipe.title}</h1>
+          <p>ID: {myRecipe.id}</p>
           <p>{myRecipe.summary}</p>
           <p>Health Score: {myRecipe.healthScore}</p>
           <h2>Steps:</h2>
@@ -36,6 +37,13 @@ const Detail = (props) => {
                 </li>
               ))}
           </ul>
+          <h2>Diets:</h2>
+          <ul>
+            {myRecipe.diets &&
+              myRecipe.diets.map((diet, index) => (
+                <li key={index}>{diet}</li>
+              ))}
+          </ul>
         </div>
       ) : (
         <p>Loading...</p>
@@ -45,4 +53,3 @@ const Detail = (props) => {
 };
 
 export default Detail;
-

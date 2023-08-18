@@ -27,14 +27,16 @@ const NavBar = () => {
 
   return (
     <div className={styles.navBarContainer}>
-      <SearchBar />
+      <div className={styles.searchLine}><SearchBar /></div>
+      
+      <div className={styles.selectLine}>
       <select onChange={e => handleSortAlphabetically(e)}>
-        <option value='ascendente'>Ascendente</option>
-        <option value='descendente'>Descendente</option>
+        <option value='ascendente'>A-Z</option>
+        <option value='descendente'>Z-A</option>
       </select>
       <select onChange={(e) => handleSortByHealthScore(e)}>
-        <option value="ascendente">Health Score Ascendente</option>
-        <option value="descendente">Health Score Descendente</option>
+        <option value="ascendente">Ascending health score</option>
+        <option value="descendente">Descending health score</option>
       </select>
       <select onChange={e => handleFilterByDiets(e)}>
         <option value="all">All</option>
@@ -52,8 +54,9 @@ const NavBar = () => {
       <select onChange={e => handleFilterCreated(e)}>
         <option value='all'>All</option>
         <option value='created'>Created</option>
-        <option value='api'>Existentes</option>
+        <option value='api'>Existing</option>
       </select>
+      </div>
     </div>
   )
 

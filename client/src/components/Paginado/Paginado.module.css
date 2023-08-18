@@ -1,27 +1,31 @@
 /* Paginado.module.css */
 
 .paginadoContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  .paginaButton {
-    border: none;
-    background-color: transparent;
-    color: #333;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: color 0.3s;
-  }
-  
-  .paginaButton:hover {
-    color: #007bff;
-  }
-  
-  .active {
-    color: #0b054b; 
-    font-weight: bold;
-  }
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.paginaButton {
+  background-color: #ffffff;
+  color: #35495e;
+  border: 1px solid #35495e;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  margin: 0 5px;
+}
+
+.paginaButton:hover {
+  background-color: #35495e;
+  color: white;
+}
+
+.active {
+  background-color: #35495e;
+  color: white;
+  border: 1px solid #35495e;
+}

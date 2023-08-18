@@ -78,7 +78,7 @@ const Create = () => {
     return (
         <div className={styles.container}>
             <Link to="/home">
-                <button>Home</button>
+            <button className={styles.homeButton}>Home</button>
             </Link>
 
             <h1>Crear receta</h1>

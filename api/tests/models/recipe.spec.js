@@ -19,4 +19,4 @@ describe('Recipe model', () => {
       });
     });
   });
-});
+})
