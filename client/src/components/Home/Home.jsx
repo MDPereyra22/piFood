@@ -23,7 +23,7 @@ const Home = () => {
     setCurrentPage(page);
   };
 
-  const handleFilterOrSearch = () => {
+  const handleFilterActive = () => {
     setCurrentPage(1);
   };
 
@@ -33,7 +33,7 @@ const Home = () => {
 
   return (
     <div>
-     <NavBar onFilterOrSearch={handleFilterOrSearch} />
+     <NavBar handleFilterActive={handleFilterActive} />
      
 
       <div className={styles.divRutas}>

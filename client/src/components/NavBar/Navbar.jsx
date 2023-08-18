@@ -7,32 +7,31 @@ import styles from "./Navbar.module.css";
 
 
 
-const NavBar = ({onFilterOrSearch}) => {
-  const [filterApplied, setFilterApplied] = useState(false);
+const NavBar = ({handleFilterActive}) => {
   const dispatch = useDispatch();
 
   const handleSortAlphabetically = (event) => {
     dispatch(sortRecipes(event.target.value));
-    setFilterApplied(true);
-    onFilterOrSearch();
+
+    handleFilterActive();
   };
 
   const handleSortByHealthScore = (event) => {
     dispatch(sortHealthScore(event.target.value));
-    setFilterApplied(true);
-    onFilterOrSearch();
+
+    handleFilterActive();
   };
 
   const handleFilterByDiets = (event) => {
     dispatch(filteredRecipesByDiets(event.target.value))
-    setFilterApplied(true);
-    onFilterOrSearch();
+
+    handleFilterActive();
   }
 
   const handleFilterCreated = (event) => {
     dispatch(filterCreated(event.target.value))
-    setFilterApplied(true);
-    onFilterOrSearch();
+
+    handleFilterActive();
   }
 
   return (

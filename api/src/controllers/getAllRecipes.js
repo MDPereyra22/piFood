@@ -77,7 +77,7 @@ const getAllRecipes = async (req, res) => {
       let recipesName = allRecipes.filter(el => el.title.toLowerCase().includes(name.toLowerCase()));
       recipesName.length ?
         res.status(200).send(recipesName) :
-        res.status(400).send("No se encontró el personaje")
+        res.status(400).send("No se encontró la receta")
     } else {
       res.status(200).json(allRecipes);
     }
