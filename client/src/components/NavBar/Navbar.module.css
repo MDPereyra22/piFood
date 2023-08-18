@@ -1,8 +1,7 @@
-/* NavBar.module.css */
 
 .navBarContainer {
   display: flex;
-  flex-wrap: wrap; /* Permite que los elementos se envuelvan cuando el espacio es insuficiente */
+  flex-wrap: wrap; 
   align-items: center;
   justify-content: center;
   background-color: #35495e;
@@ -20,10 +19,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 10px; /* Agregamos margen horizontal */
+  margin: 0 10px; 
 }
 
-/* Estilos para los selects */
 .selectLine select {
   padding: 8px;
   border: none;
@@ -34,7 +32,6 @@
   margin: 0 5px;
 }
 
-/* Estilos para el botón en el select */
 .selectLine button {
   background-color: #35495e;
   color: white;

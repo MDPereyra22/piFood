@@ -6,8 +6,8 @@ const LandingPage = () => {
   return (
     <div className={styles.body}>
       <header className={styles.header}>
-        <h1>Bienvenido a Nuestra Plataforma</h1>
-        <p>Tu fuente de recetas deliciosas y saludables</p>
+        <h1>Welcome to API Food</h1>
+        <p>Your source for delicious and healthy recipes</p>
       </header>
       <div className={styles.mainContent}>
         <img
@@ -17,15 +17,15 @@ const LandingPage = () => {
         />
         <div className={styles.introText}>
           <p>
-            Explora una amplia variedad de recetas. Crea tus propias recetas y más.
+          Explore a wide variety of recipes. Create your own recipes and more.
           </p>
           <Link to="/home">
-            <button className={styles.enterButton}>¡Comenzar Ahora!</button>
+            <button className={styles.enterButton}>Start Now!</button>
           </Link>
         </div>
       </div>
       <footer className={styles.footer}>
-        <p>&copy; 2023 Nuestra Plataforma. Todos los derechos reservados.</p>
+        <p>&copy; 2023 Api Food. All rights reserved.</p>
       </footer>
     </div>
   );

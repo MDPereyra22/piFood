@@ -24,8 +24,6 @@ const postRecipe = async (req, res) => {
 
         recipeCreated.addDiets(dietsDb)
 
-        // const recipesDB = await Recipe.findAll()
-
         return res.send("Receta creada con éxito");
     } catch (error) {
         return res.status(500).json({ message: error.message });

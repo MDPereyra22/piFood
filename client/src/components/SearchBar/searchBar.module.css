@@ -1,11 +1,10 @@
-/* SearchBar.module.css */
 
 .divSearch {
   display: flex;
   align-items: center;
-  max-width: 250px; /* Reducir el ancho máximo */
+  max-width: 250px; 
   margin: 0 auto;
-  padding: 5px; /* Reducir el padding */
+  padding: 5px; 
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
@@ -13,11 +12,11 @@
 
 .inputSearch {
   flex: 1;
-  height: 14px; /* Reducir la altura del campo de entrada */
+  height: 14px; 
   border: none;
-  padding: 6px; /* Reducir el padding */
+  padding: 6px; 
   border-radius: 4px;
-  font-size: 14px; /* Reducir el tamaño de fuente */
+  font-size: 14px;
 }
 
 .buttonSearch {
@@ -25,12 +24,12 @@
   color: white;
   border: none;
   border-radius: 4px;
-  padding: 3px 10px; /* Reducir el padding del botón */
-  margin-left: 5px; /* Reducir el margen izquierdo */
+  padding: 3px 10px; 
+  margin-left: 5px; 
   cursor: pointer;
-  font-size: 14px; /* Reducir el tamaño de fuente */
+  font-size: 14px; 
   transition: background-color 0.3s ease;
-  height: 30px; /* Ajustar la altura del botón */
+  height: 30px;
   display: flex;
   align-items: center;
 }

@@ -141,7 +141,7 @@ const Create = () => {
                     </select>
                 </div>
                 <div>
-                    <label>Dietas seleccionadas:</label>
+                    <label>Selected diets:</label>
                     <ul>
                         {form.diets.map((diet) => (
                             <li key={diet}>{diet}</li>
