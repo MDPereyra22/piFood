@@ -23,13 +23,18 @@ const Home = () => {
     setCurrentPage(page);
   };
 
+  const handleFilterOrSearch = () => {
+    setCurrentPage(1);
+  };
+
   const startIndex = (currentPage - 1) * recipesPerPage;
   const endIndex = startIndex + recipesPerPage;
   const recipesToShow = allRecipes.slice(startIndex, endIndex);
 
   return (
     <div>
-      <NavBar />
+     <NavBar onFilterOrSearch={handleFilterOrSearch} />
+     
 
       <div className={styles.divRutas}>
         <Link  className={styles.enterButton} to="/recipe"> Create recipe </Link>

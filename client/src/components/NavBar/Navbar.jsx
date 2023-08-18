@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useDispatch } from "react-redux";
 import { sortRecipes, sortHealthScore, filteredRecipesByDiets, filterCreated } from "../../actions";
 import SearchBar from "../SearchBar/SearchBar";
@@ -7,22 +7,32 @@ import styles from "./Navbar.module.css";
 
 
 
-const NavBar = () => {
+const NavBar = ({onFilterOrSearch}) => {
+  const [filterApplied, setFilterApplied] = useState(false);
   const dispatch = useDispatch();
+
   const handleSortAlphabetically = (event) => {
     dispatch(sortRecipes(event.target.value));
+    setFilterApplied(true);
+    onFilterOrSearch();
   };
 
   const handleSortByHealthScore = (event) => {
     dispatch(sortHealthScore(event.target.value));
+    setFilterApplied(true);
+    onFilterOrSearch();
   };
 
   const handleFilterByDiets = (event) => {
     dispatch(filteredRecipesByDiets(event.target.value))
+    setFilterApplied(true);
+    onFilterOrSearch();
   }
 
   const handleFilterCreated = (event) => {
     dispatch(filterCreated(event.target.value))
+    setFilterApplied(true);
+    onFilterOrSearch();
   }
 
   return (

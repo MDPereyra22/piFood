@@ -20,7 +20,7 @@ export const getRecipes = () => {
             })
 
         } catch (error) {
-            console.error('Error al agregar el favorito:', error)
+            alert(error.response.data)
         }
     }
 }
@@ -63,7 +63,7 @@ export const getNameRecipes = (payload) => {
                 payload: data
             })
         } catch (error) {
-            console.error(error)
+            alert(error.response.data)
         }
     }
 }
@@ -86,10 +86,10 @@ export const postRecipe = (payload) => {
     return async (dispatch) => {
         try {
             const response = await axios.post("http://localhost:3001/recipes", payload)
-            console.log(response)
+            alert("Recipe created")
             return response
         } catch (error) {
-            console.error(error)
+           alert(error.response.data)
         }
     }
 };
@@ -99,7 +99,6 @@ export const getDetail =(id)=>{
     return async(dispatch)=>{
         try {
             const {data} = await axios.get(endpoint);
-            console.log(data)
             return dispatch({
                 type: GET_DETAIL,
                 payload: data

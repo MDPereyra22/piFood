@@ -7,9 +7,6 @@ import styles from "./Create.module.css";
 import StepsInputs from "../StepsInputs/StepsInputs";
 
 
-
-
-
 const Create = () => {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -55,13 +52,9 @@ const Create = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(form);
-        if (Object.keys(errors).length !== 0) {
-                alert("Faltan datos")
-                console.log(errors);
-        } else {
+
+        if (Object.keys(errors).length === 0) {
             dispatch(postRecipe(form));
-            alert('Recipe created');
             setForm({
                 name: "",
                 summary: "",
@@ -71,23 +64,24 @@ const Create = () => {
                 diets: [],
             });
             history.push('/home');
-        }
-
+        } else {
+            alert("Faltan datos")
+        } 
     };
 
     return (
         <div className={styles.container}>
             <Link to="/home">
-            <button className={styles.homeButton}>Home</button>
+            <button className={styles.enterButton}>Home</button>
             </Link>
 
-            <h1>Crear receta</h1>
+            <h1 className={styles.h1}>Create recipe</h1>
             <form onSubmit={(e) => handleSubmit(e)} className={styles.form}>
                 <div>
                     <label>Title:</label>
                     <input
                         type="text"
-                        value={form.name}
+                        value={form.title}
                         name="title"
                         onChange={(e) => handleChange(e)}
                     />

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./Steps.module.css"
 
 
 
@@ -42,7 +43,7 @@ const StepsInputs = (props) => {
                     </span>
                 )
             })}
-            <button type="button" onClick={() => setSteps((prev) => [...prev, ""])}>Add Step</button>
+            <button className={styles.enterButton} type="button" onClick={() => setSteps((prev) => [...prev, ""])}>Add Step</button>
         </div>
     )
 }

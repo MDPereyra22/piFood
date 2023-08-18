@@ -63,7 +63,7 @@ const getApiAndDbRecipes = async () => {
   const allRecipes = [...apiRecipes, ...dbRecipes];
 
   return allRecipes;
-}
+} 
 
 
 const getAllRecipes = async (req, res) => {

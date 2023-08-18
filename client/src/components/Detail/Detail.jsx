@@ -24,9 +24,12 @@ const Detail = (props) => {
             <img src={myRecipe.image} alt={myRecipe.title} />
           </div>
           <h1>{myRecipe.title}</h1>
-          <p>ID: {myRecipe.id}</p>
+          <h2>ID:</h2>
+          <p>{myRecipe.id}</p>
+          <h2>Summary:</h2>
           <p>{myRecipe.summary}</p>
-          <p>Health Score: {myRecipe.healthScore}</p>
+          <h2>Health Score:</h2>
+          <p> {myRecipe.healthScore}</p>
           <h2>Steps:</h2>
           <ul>
             {myRecipe.steps &&
@@ -38,12 +41,15 @@ const Detail = (props) => {
               ))}
           </ul>
           <h2>Diets:</h2>
+          <div>
           <ul>
             {myRecipe.diets &&
               myRecipe.diets.map((diet, index) => (
                 <li key={index}>{diet}</li>
               ))}
           </ul>
+          </div>
+         
         </div>
       ) : (
         <p>Loading...</p>
